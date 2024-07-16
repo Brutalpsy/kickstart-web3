@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import { Card, Button } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+
+import Layout from '../components/Layout';
 
 
 const CampaignIndex = ({ campaigns }) => {
@@ -16,16 +17,20 @@ const CampaignIndex = ({ campaigns }) => {
   }
 
   return (
-    <>
-      <h3>Open campaigns</h3>
-      <div>{renderCampaigns()}
+    <Layout>
+      <div>
+        <h3>Open campaigns</h3>
         <Button
           content="Create Campaign"
           icon='add circle'
+          floated='right'
           primary
         />
+        <div>{renderCampaigns()}
+
+        </div>
       </div>
-    </>
+    </Layout>
   )
 }
 
