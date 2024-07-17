@@ -11,8 +11,6 @@ const INITIAL_TRANSACTION_STATE = {
     success: ''
 }
 
-
-
 const CampaignNew = (props) => {
     const router = useRouter();
 

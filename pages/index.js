@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import factory from '../ethereum/factory';
 import { Card, Button } from 'semantic-ui-react'
-
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-
+import Link from "next/link";
 
 const CampaignIndex = ({ campaigns }) => {
+  const router = useRouter();
 
-  const renderCampaigns = () => {
-    const items = campaigns.map(address => ({
-      header: address,
-      description: <a> View Campaign </a>,
-      fluid: true
-    }))
-    return <Card.Group items={items} />
-  }
+
+  const items = campaigns.map((campaignAddress) => {
+    return {
+      header: campaignAddress,
+      description: (
+        <Link href={`/campaigns/${campaignAddress}`}>
+          <a>View campaign</a>
+        </Link>
+      ),
+      fluid: true,
+    };
+  });
 
   return (
     <Layout>
@@ -25,12 +30,11 @@ const CampaignIndex = ({ campaigns }) => {
           icon='add circle'
           floated='right'
           primary
+          onClick={() => router.push('campaigns/new')}
         />
-        <div>{renderCampaigns()}
-
-        </div>
+        <Card.Group items={items} centered />
       </div>
-    </Layout>
+    </Layout >
   )
 }
 
