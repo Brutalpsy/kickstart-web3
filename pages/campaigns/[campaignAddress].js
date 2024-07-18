@@ -1,7 +1,9 @@
 import Layout from '../../components/Layout';
 import Campaign from '../../ethereum/campaign';
-import { Card } from 'semantic-ui-react';
+import { Button, Card, Grid } from 'semantic-ui-react';
 import web3 from '../../ethereum/web3';
+import ContributeForm from '../../components/ContributeForm';
+import { useRouter } from "next/router";
 
 const CampaignShow = ({
     campaignAddress,
@@ -11,8 +13,7 @@ const CampaignShow = ({
     approversCount,
     manager,
 }) => {
-
-    console.log(requestCount)
+    const router = useRouter();
     const items = [
         {
             header: "Manager Address",
@@ -52,8 +53,25 @@ const CampaignShow = ({
 
     return (
         <Layout>
-            <Card.Group items={items}>
-            </Card.Group>
+            <Grid>
+                <Grid.Row>
+                    <Grid.Column width={10}>
+                        <Card.Group items={items}>
+                        </Card.Group>
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                        <ContributeForm campaignAddress={campaignAddress} />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column>
+                        <Button color='teal' size='large' onClick={() => router.push(`/campaigns/${campaignAddress}/requests`)}>
+                            Show Requests
+                        </Button>
+                    </Grid.Column>
+
+                </Grid.Row>
+            </Grid>
         </Layout >)
 }
 

@@ -29,7 +29,8 @@ const CampaignIndex = ({ campaigns }) => {
           content="Create Campaign"
           icon='add circle'
           floated='right'
-          primary
+          color='teal'
+          size='large'
           onClick={() => router.push('campaigns/new')}
         />
         <Card.Group items={items} centered />

@@ -4,12 +4,8 @@ import { Form, Button, Input, Message, Icon } from 'semantic-ui-react';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import { useRouter } from "next/router";
+import { INITIAL_TRANSACTION_STATE } from '../../helpers/constants';
 
-const INITIAL_TRANSACTION_STATE = {
-    loading: '',
-    error: '',
-    success: ''
-}
 
 const CampaignNew = (props) => {
     const router = useRouter();
@@ -88,7 +84,7 @@ const CampaignNew = (props) => {
                         onChange={event => setMinimumContribution(event.target.value)}
                     />
                 </Form.Field>
-                <Button primary loading={!!loading}>Create</Button>
+                <Button color='teal' size='large' loading={!!loading}>Create</Button>
                 {Boolean(loading || error || success) && renderMessage()}
             </Form>
         </Layout>
