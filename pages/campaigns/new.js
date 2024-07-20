@@ -5,6 +5,7 @@ import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import { useRouter } from 'next/router';
 import useTransactionState from '../../hooks/useTransactionState';
+import INITIAL_TRANSACTION_STATE from '../../helpers/constants';
 
 const CampaignNew = (props) => {
   const router = useRouter();
@@ -17,7 +18,6 @@ const CampaignNew = (props) => {
     event.preventDefault();
 
     setNewTransactionState({
-      ...INITIAL_TRANSACTION_STATE,
       loading: 'Transaction is processing....',
     });
 
@@ -30,7 +30,6 @@ const CampaignNew = (props) => {
         });
       const etherscanLink = `https://sepolia.etherscan.io/tx/${response.transactionHash}`;
       setNewTransactionState({
-        ...INITIAL_TRANSACTION_STATE,
         success: (
           <a href={etherscanLink} target='_blank'>
             View the transaction on Etherscan
@@ -41,7 +40,6 @@ const CampaignNew = (props) => {
     } catch (err) {
       console.log(err.message);
       setNewTransactionState({
-        ...INITIAL_TRANSACTION_STATE,
         error: err.message,
       });
       setMinimumContribution('');

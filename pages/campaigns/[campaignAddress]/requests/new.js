@@ -60,7 +60,9 @@ const NewRequest = ({ campaignAddress }) => {
             <Button
               size='large'
               color='teal'
-              onClick={router.push(`/campaigns/${campaignAddress}/requests`)}
+              onClick={() =>
+                router.push(`/campaigns/${campaignAddress}/requests`)
+              }
             >
               View all requests
             </Button>
@@ -97,7 +99,9 @@ const NewRequest = ({ campaignAddress }) => {
         />
         <Message.Content>
           {Boolean(success) && (
-            <Message.Header>Request Created Successfully!</Message.Header>
+            <Message.Header style={{ marginBottom: '10px' }}>
+              Request Created Successfully!
+            </Message.Header>
           )}
           {loading ? loading : error ? error : success}
         </Message.Content>
@@ -139,7 +143,12 @@ const NewRequest = ({ campaignAddress }) => {
             value={formData.recipientAddress}
             onChange={updateFormData}
           />
-          <Button color='teal' size='large'>
+          <Button
+            disabled={loading}
+            color='teal'
+            size='large'
+            style={{ marginTop: '1em' }}
+          >
             Create!
           </Button>
         </Form.Field>
